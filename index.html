@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026 Midterm Stances</title>
+  <meta name="description" content="Side-by-side comparison of 2026 U.S. Senate, governor, and key House candidates' policy stances.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <div>
+        <h1>2026 Midterm Stances</h1>
+        <p class="sub" id="subtitle">General election · Tuesday, November 3, 2026</p>
+      </div>
+      <nav class="tabs" role="tablist" aria-label="Views">
+        <button role="tab" data-view="races" aria-selected="true">Races</button>
+        <button role="tab" data-view="issues" aria-selected="false">By issue</button>
+        <button role="tab" data-view="compare" aria-selected="false">Compare <span class="tray-count" id="trayCount" hidden></span></button>
+        <button role="tab" data-view="about" aria-selected="false">About</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- RACES -->
+    <section id="view-races" class="view">
+      <div class="races-layout">
+        <aside class="sidebar">
+          <div class="filters">
+            <input type="search" id="q" placeholder="Search candidate or state…" aria-label="Search candidates or states">
+            <div class="seg" role="group" aria-label="Office">
+              <button data-office="all" class="on">All</button>
+              <button data-office="senate">Senate</button>
+              <button data-office="governor">Governor</button>
+              <button data-office="house">House</button>
+            </div>
+            <div class="row">
+              <select id="stateSel" aria-label="State"><option value="">All states</option></select>
+            </div>
+            <label class="check"><input type="checkbox" id="fCompetitive"> Competitive only (Tossup / Lean)</label>
+            <label class="check"><input type="checkbox" id="fData"> Only races with stance data</label>
+          </div>
+          <div class="race-count" id="raceCount"></div>
+          <ul class="race-list" id="raceList"></ul>
+        </aside>
+        <article class="detail" id="raceDetail" aria-live="polite"></article>
+      </div>
+    </section>
+
+    <!-- BY ISSUE -->
+    <section id="view-issues" class="view" hidden>
+      <div class="issue-bar">
+        <label>Issue <select id="issueSel"></select></label>
+        <div class="seg" role="group" aria-label="Office">
+          <button data-ioffice="all" class="on">All</button>
+          <button data-ioffice="senate">Senate</button>
+          <button data-ioffice="governor">Governor</button>
+          <button data-ioffice="house">House</button>
+        </div>
+      </div>
+      <p class="issue-q" id="issueQ"></p>
+      <div id="issueSummary" class="issue-summary"></div>
+      <div class="table-scroll"><table class="issue-table" id="issueTable"></table></div>
+    </section>
+
+    <!-- COMPARE -->
+    <section id="view-compare" class="view" hidden>
+      <div class="compare-bar">
+        <input list="candList" id="candPick" placeholder="Add any candidate with stance data…" aria-label="Add candidate">
+        <datalist id="candList"></datalist>
+        <button id="candAdd" class="btn">Add</button>
+        <button id="candClear" class="btn ghost">Clear</button>
+      </div>
+      <p class="hint">Compare up to 4 candidates from any race — e.g. two Senate candidates in different states. Use “+ Compare” on any race page too.</p>
+      <div id="compareOut"></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="view-about" class="view prose" hidden>
+      <h2>What's here</h2>
+      <ul id="aboutStats"></ul>
+      <h2>Sources</h2>
+      <p><strong>Nominees and ratings:</strong> Wikipedia's <a href="https://en.wikipedia.org/wiki/2026_United_States_Senate_elections" target="_blank" rel="noopener">2026 Senate</a> and <a href="https://en.wikipedia.org/wiki/2026_United_States_gubernatorial_elections" target="_blank" rel="noopener">2026 gubernatorial</a> election articles, as of October 13, 2026, with Cook Political Report and Sabato's Crystal Ball ratings as listed there. Late changes (Maine's replacement nominee, South Carolina's special runoff, Alaska's ballot dispute) were checked against news coverage.</p>
+      <p><strong>Issue stances:</strong> paraphrased from the nonpartisan voter guides at <a href="https://guides.vote" target="_blank" rel="noopener">guides.vote</a>, which cite candidates' votes, bills and public statements. The short labels (“Ban”, “Tighten”, “Mostly yes”…) are guides.vote's own. Every race page links to its source guide.</p>
+      <h2>Caveats</h2>
+      <ul>
+        <li>Stance text was extracted and condensed from the source guides with AI assistance. It is a summary, not a quotation; check the linked guide (and its citations) before relying on any specific claim.</li>
+        <li>Detailed stances exist only for races guides.vote has covered: 11 Senate, 8 governor and 32 competitive House races. All other Senate and governor races show nominees, incumbency and ratings, with a Ballotpedia link.</li>
+        <li>“No position found” means the source guide found no stated position, not that the candidate has none.</li>
+        <li>The House section covers competitive districts only, not all 435 seats.</li>
+      </ul>
+      <p class="muted">Not affiliated with any campaign, party or the sources above. Data snapshot: October 13, 2026.</p>
+    </section>
+  </main>
+
+  <script src="data/loader.js"></script>
+  <script src="data/races.js"></script>
+  <script src="data/guides/gov-az.js"></script>
+  <script src="data/guides/gov-fl.js"></script>
+  <script src="data/guides/gov-ga.js"></script>
+  <script src="data/guides/gov-ia.js"></script>
+  <script src="data/guides/gov-mi.js"></script>
+  <script src="data/guides/gov-nv.js"></script>
+  <script src="data/guides/gov-oh.js"></script>
+  <script src="data/guides/gov-wi.js"></script>
+  <script src="data/guides/house-az-01.js"></script>
+  <script src="data/guides/house-az-02.js"></script>
+  <script src="data/guides/house-az-06.js"></script>
+  <script src="data/guides/house-ca-13.js"></script>
+  <script src="data/guides/house-ca-22.js"></script>
+  <script src="data/guides/house-ca-45.js"></script>
+  <script src="data/guides/house-ca-48.js"></script>
+  <script src="data/guides/house-co-08.js"></script>
+  <script src="data/guides/house-fl-22.js"></script>
+  <script src="data/guides/house-fl-25.js"></script>
+  <script src="data/guides/house-ia-01.js"></script>
+  <script src="data/guides/house-ia-03.js"></script>
+  <script src="data/guides/house-mi-04.js"></script>
+  <script src="data/guides/house-mi-07.js"></script>
+  <script src="data/guides/house-mi-10.js"></script>
+  <script src="data/guides/house-nc-01.js"></script>
+  <script src="data/guides/house-ne-02.js"></script>
+  <script src="data/guides/house-nj-07.js"></script>
+  <script src="data/guides/house-nm-02.js"></script>
+  <script src="data/guides/house-nv-03.js"></script>
+  <script src="data/guides/house-ny-03.js"></script>
+  <script src="data/guides/house-ny-17.js"></script>
+  <script src="data/guides/house-oh-01.js"></script>
+  <script src="data/guides/house-oh-09.js"></script>
+  <script src="data/guides/house-pa-01.js"></script>
+  <script src="data/guides/house-pa-07.js"></script>
+  <script src="data/guides/house-pa-08.js"></script>
+  <script src="data/guides/house-pa-10.js"></script>
+  <script src="data/guides/house-va-01.js"></script>
+  <script src="data/guides/house-va-02.js"></script>
+  <script src="data/guides/house-wa-03.js"></script>
+  <script src="data/guides/house-wi-03.js"></script>
+  <script src="data/guides/sen-ak.js"></script>
+  <script src="data/guides/sen-ga.js"></script>
+  <script src="data/guides/sen-ia.js"></script>
+  <script src="data/guides/sen-me.js"></script>
+  <script src="data/guides/sen-mi.js"></script>
+  <script src="data/guides/sen-ms.js"></script>
+  <script src="data/guides/sen-nc.js"></script>
+  <script src="data/guides/sen-ne.js"></script>
+  <script src="data/guides/sen-nh.js"></script>
+  <script src="data/guides/sen-oh.js"></script>
+  <script src="data/guides/sen-tx.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
